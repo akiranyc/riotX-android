@@ -21,6 +21,7 @@ import im.vector.matrix.android.api.session.crypto.CryptoService
 import im.vector.matrix.android.api.session.room.Room
 import im.vector.matrix.android.internal.database.mapper.RoomSummaryMapper
 import im.vector.matrix.android.internal.session.SessionScope
+import im.vector.matrix.android.internal.session.room.call.DefaultRoomCallService
 import im.vector.matrix.android.internal.session.room.draft.DefaultDraftService
 import im.vector.matrix.android.internal.session.room.membership.DefaultMembershipService
 import im.vector.matrix.android.internal.session.room.notification.DefaultRoomPushRuleService
@@ -50,6 +51,7 @@ internal class DefaultRoomFactory @Inject constructor(private val monarchy: Mona
                                                       private val stateServiceFactory: DefaultStateService.Factory,
                                                       private val uploadsServiceFactory: DefaultUploadsService.Factory,
                                                       private val reportingServiceFactory: DefaultReportingService.Factory,
+                                                      private val roomCallServiceFactory: DefaultRoomCallService.Factory,
                                                       private val readServiceFactory: DefaultReadService.Factory,
                                                       private val typingServiceFactory: DefaultTypingService.Factory,
                                                       private val relationServiceFactory: DefaultRelationService.Factory,
@@ -70,6 +72,7 @@ internal class DefaultRoomFactory @Inject constructor(private val monarchy: Mona
                 stateService = stateServiceFactory.create(roomId),
                 uploadsService = uploadsServiceFactory.create(roomId),
                 reportingService = reportingServiceFactory.create(roomId),
+                roomCallService = roomCallServiceFactory.create(roomId),
                 readService = readServiceFactory.create(roomId),
                 typingService = typingServiceFactory.create(roomId),
                 cryptoService = cryptoService,
