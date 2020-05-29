@@ -59,6 +59,9 @@ data class RoomSummary constructor(
     val hasNewMessages: Boolean
         get() = notificationCount != 0
 
+    val canStartCall: Boolean
+        get() = isDirect && joinedMembersCount == 2
+
     companion object {
         const val NOT_IN_BREADCRUMBS = -1
     }
