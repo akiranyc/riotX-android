@@ -486,20 +486,6 @@ class RoomDetailFragment @Inject constructor(
                 navigator.openIntegrationManager(requireContext(), roomDetailArgs.roomId, null, null)
                 true
             }
-            else                     -> super.onOptionsItemSelected(item)
-        }
-        if (item.itemId == R.id.resend_all) {
-            roomDetailViewModel.handle(RoomDetailAction.ResendAll)
-            return true
-        }
-        if (item.itemId == R.id.voice_call || item.itemId == R.id.video_call) {
-            roomDetailViewModel.getOtherUserIds()?.firstOrNull()?.let {
-                webRtcPeerConnectionManager.startOutgoingCall(requireContext(), roomDetailArgs.roomId, it, item.itemId == R.id.video_call)
-            }
-            R.id.resend_all          -> {
-                roomDetailViewModel.handle(RoomDetailAction.ResendAll)
-                true
-            }
             R.id.voice_call,
             R.id.video_call          -> {
                 roomDetailViewModel.getOtherUserIds()?.firstOrNull()?.let {
